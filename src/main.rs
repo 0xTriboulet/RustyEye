@@ -1,5 +1,7 @@
 use tch::{CModule, Tensor, vision::image, Kind,};
 // LIBTORCH_BYPASS_VERSION_CHECK= 1
+
+// TEST
 fn main() -> anyhow::Result<()> {
     println!("Loading model...");
     let model = CModule::load("C:\\Users\\0xtriboulet\\OneDrive\\Desktop\\maldev\\Zz.Projects\\RustyVision\\RustyEye\\model.pt")?;
