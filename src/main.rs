@@ -1,3 +1,4 @@
+#[allow(non_snake_case)]
 use tch::{CModule, Tensor, vision::image, Kind,};
 
 use nokhwa::Camera;
@@ -15,7 +16,7 @@ fn capture_image() -> ImageResult<()> {
     let requested = RequestedFormat::new::<RgbFormat>(RequestedFormatType::AbsoluteHighestFrameRate);
    
     // make the get frame from camera
-    let mut frame = Camera::new(CameraIndex::Index(0), requested)
+    let frame = Camera::new(CameraIndex::Index(0), requested)
         .expect("Failed to initialize camera!")
         .frame().expect("Failed to grab frame!");
 
