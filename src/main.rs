@@ -27,18 +27,16 @@ fn capture_image() -> ImageResult<()> {
     let img_buffer = ImageBuffer::<Rgb<u8>, _>::from_raw(
         decoded.width() as u32,
         decoded.height() as u32,
-        decoded.into_raw()  // Corrected here, use into_raw if you need to pass raw data, otherwise just use `decoded` directly
-    )
-        .ok_or_else(|| anyhow::anyhow!("Failed to convert raw buffer into image buffer"))?;
+        decoded.into_raw()
+    ).ok_or_else(|| anyhow::anyhow!("Failed to convert raw buffer into image buffer"));
 
     // Specify the path and save the image.
-    img_buffer.save("captured_frame.png")
+    img_buffer.expect("Failed to read image into buffer!").save("captured_frame.png")
 }
 
 // TEST
 fn main() -> anyhow::Result<()> {
-
-
+    
     capture_image().expect("Failed to capture image!");
 
     let model = CModule::load("model.pt")?;
