@@ -8,3 +8,9 @@ edition = "2021"
 [dependencies]
 tch = "0.15.0"
 anyhow = "1.0.82"
+image = "0.25.1"
+
+[dependencies.nokhwa]
+version = "0.10.0"
+# Use the native input backends, enable WGPU integration
+features = ["input-native", "output-wgpu"]
