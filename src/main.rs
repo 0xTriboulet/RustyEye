@@ -1,4 +1,5 @@
-#[allow(non_snake_case)]
+#![allow(non_snake_case)]
+
 use tch::{CModule, Tensor, vision::image, Kind,};
 
 use nokhwa::Camera;
@@ -14,7 +15,7 @@ fn capture_image() -> ImageResult<()> {
 
     // request the absolute highest resolution CameraFormat that can be decoded to RGB.
     let requested = RequestedFormat::new::<RgbFormat>(RequestedFormatType::AbsoluteHighestFrameRate);
-   
+
     // make the get frame from camera
     let frame = Camera::new(CameraIndex::Index(0), requested)
         .expect("Failed to initialize camera!")
@@ -64,7 +65,6 @@ fn check_similarity()-> f64{
 
 }
 
-// TEST
 fn main() -> anyhow::Result<()> {
 
     capture_image().expect("Failed to capture image!");
