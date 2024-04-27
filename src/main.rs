@@ -22,7 +22,7 @@ fn capture_image() -> ImageResult<()> {
 
     // decode into an ImageBuffer
     let decoded = frame.decode_image::<RgbFormat>().unwrap();
-    
+
     let img_buffer = ImageBuffer::<Rgb<u8>, _>::from_raw(
         decoded.width() as u32,
         decoded.height() as u32,
@@ -35,7 +35,7 @@ fn capture_image() -> ImageResult<()> {
 
 fn preprocess_image(img_path: &str) -> anyhow::Result<Tensor> {
     let image = image::load(img_path)?.resize([3,160,160]).to_kind(Kind::Uint8) / 256.0; // Normalize image to 0-1
-
+    
     let mean = Tensor::f_from_slice(&[0.485, 0.456, 0.406])?.view([3, 1, 1]);
     let std = Tensor::f_from_slice(&[0.229, 0.224, 0.225])?.view([3, 1, 1]);
     let image = (image - &mean) / &std;
