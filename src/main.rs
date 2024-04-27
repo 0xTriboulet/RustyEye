@@ -22,8 +22,7 @@ fn capture_image() -> ImageResult<()> {
 
     // decode into an ImageBuffer
     let decoded = frame.decode_image::<RgbFormat>().unwrap();
-
-    // Assume `decoded` is already of type `ImageBuffer<Rgb<u8>, Vec<u8>>`
+    
     let img_buffer = ImageBuffer::<Rgb<u8>, _>::from_raw(
         decoded.width() as u32,
         decoded.height() as u32,
