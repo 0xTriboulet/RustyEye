@@ -24,8 +24,8 @@ fn capture_image() -> ImageResult<()> {
     let decoded = frame.decode_image::<RgbFormat>().unwrap();
 
     let img_buffer = ImageBuffer::<Rgb<u8>, _>::from_raw(
-        decoded.width() as u32,
-        decoded.height() as u32,
+        decoded.width(),
+        decoded.height(),
         decoded.into_raw()
     ).ok_or_else(|| anyhow::anyhow!("Failed to convert raw buffer into image buffer"));
 
