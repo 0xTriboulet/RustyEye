@@ -17,7 +17,7 @@ fn capture_image() -> ImageResult<()> {
     // make the get frame from camera
     let mut frame = Camera::new(CameraIndex::Index(0), requested)
         .expect("Failed to initialize camera!")
-        .frame().expect("Failed to grab frame!");;
+        .frame().expect("Failed to grab frame!");
 
     // decode into an ImageBuffer
     let decoded = frame.decode_image::<RgbFormat>().unwrap();
