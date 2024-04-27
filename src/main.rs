@@ -1,5 +1,4 @@
 #![allow(non_snake_case)]
-
 use tch::{CModule, Tensor, vision::image, Kind,};
 
 use nokhwa::Camera;
