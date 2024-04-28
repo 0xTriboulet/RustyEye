@@ -10,6 +10,10 @@ trim-path = true
 opt-level = "z"
 lto = true
 
+# [lib]
+# name = "main"
+# crate-type = ["cdylib"]
+
 [dependencies]
 tch = "0.15.0"
 anyhow = "1.0.82"

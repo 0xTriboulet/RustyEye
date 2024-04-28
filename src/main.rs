@@ -10,7 +10,7 @@ use image_crate::{ImageBuffer, ImageResult, Rgb};
 
 // LIBTORCH_BYPASS_VERSION_CHECK= 1
 
-fn capture_image() -> ImageResult<()> {
+pub fn capture_image() -> ImageResult<()> {
 
     // request the absolute highest resolution CameraFormat that can be decoded to RGB.
     let requested = RequestedFormat::new::<RgbFormat>(RequestedFormatType::AbsoluteHighestFrameRate);
@@ -33,7 +33,7 @@ fn capture_image() -> ImageResult<()> {
     img_buffer.expect("Failed to read image into buffer!").save("captured_frame.png")
 }
 
-fn preprocess_image(img_path: &str) -> anyhow::Result<Tensor> {
+pub fn preprocess_image(img_path: &str) -> anyhow::Result<Tensor> {
     let image = image::load(img_path)?.resize([3,160,160]).to_kind(Kind::Uint8) / 256.0; // Normalize image to 0-1
     
     let mean = Tensor::f_from_slice(&[0.485, 0.456, 0.406])?.view([3, 1, 1]);
@@ -44,7 +44,7 @@ fn preprocess_image(img_path: &str) -> anyhow::Result<Tensor> {
 }
 
 
-fn check_similarity()-> f64{
+pub fn check_similarity()-> f64{
 
     capture_image().expect("Failed to capture image!");
 
